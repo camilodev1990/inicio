@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content1 %}
+<div class="container" data-bs-theme="dark" style="margin-top: 150px;">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Cerrando Sesión</h2>
+                </div>
+                <div class="card-body text-center">
+                    <p>¿Estás seguro de que quieres cerrar sesión?</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger mb-3">Cerrar Sesión</button>
+                        <a href="{% url 'base' %}" class="btn btn-secondary mb-3">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+</style>
+{% endblock %}
