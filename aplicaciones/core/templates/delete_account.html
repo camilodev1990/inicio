@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+<<<<<<< HEAD
 {% load static %}
 
 {% block extrahead %}
@@ -41,5 +42,37 @@
   </div>
 </div>
 
+=======
+{% block title %}Eliminar Cuenta{% endblock %}
+
+{% block content1 %}
+<div class="container" data-bs-theme="dark" style="margin-top: 150px;">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Eliminar Cuenta</h2>
+                </div>
+                <div class="card-body text-center">
+                    <p>¿Está seguro de que desea eliminar su cuenta? Esta acción no se puede deshacer.</p>
+                    <form method="post">
+                        {% csrf_token %}                        
+                        {{ form.password }}
+                        <button type="submit" class="btn btn-danger mb-3 my-3">Eliminar Cuenta</button>
+                        <a href="{% url 'base' %}" class="btn btn-secondary mb-3 my-3">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+</style>
+>>>>>>> b60aa895ac455a0bc468875e56ebd6a01a18f119
 {% endblock %}
 
