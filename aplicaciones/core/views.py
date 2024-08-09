@@ -1,13 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.contrib.auth import logout
 from django.views import View
 from django.views.generic.edit import CreateView
-from .forms import ConfirmPasswordForm, CustomLoginForm, SignUpForm, CustomPasswordResetForm
+from .forms import ConfirmPasswordForm, CustomLoginForm, CustomPasswordChangeForm, SignUpForm, CustomPasswordResetForm
 
 
 
@@ -67,3 +68,14 @@ def delete_account(request):
         form = ConfirmPasswordForm()
     
     return render(request, 'delete_account.html', {'form': form})
+
+# Vista para cambiar la contraseña
+@method_decorator(login_required, name='dispatch')
+class CustomPasswordChangeView(PasswordChangeView):
+    form_class = CustomPasswordChangeForm
+    template_name = 'registration/password_change_form.html'
+    success_url = reverse_lazy('password_change_done')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Tu contraseña ha sido actualizada exitosamente.')
+        return super().form_valid(form)

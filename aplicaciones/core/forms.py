@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm, SetPasswordForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
 from django.contrib.auth.models import User
 
 
@@ -38,4 +38,9 @@ class ConfirmPasswordForm(forms.Form):
 
 # Formulario para restablecer la contraseña
 class CustomSetPasswordForm(SetPasswordForm):
+    pass
+
+
+#formulario para cambiar contraseña una vez esta autenticado el usuario
+class CustomPasswordChangeForm(PasswordChangeForm):
     pass
